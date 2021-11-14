@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          EICCIN
+          EICCIN 1234
         </p>
       </header>
     </div>
