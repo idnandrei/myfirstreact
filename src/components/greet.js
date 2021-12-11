@@ -1,10 +1,9 @@
 function Greet(props) {
   return (
     <div>
-    <h2>Hello, {props.name}! welcome to Counter</h2>
+      <p>Hello, {props.name}! Welcome to the offical list of employees</p>
     </div>
-  )
+  );
 }
 
-export default Greet
-
+export default Greet;
