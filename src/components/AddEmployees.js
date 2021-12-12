@@ -8,6 +8,7 @@ const AddEmployees = () => {
   const [location, setLocation] = useState("");
   const navigate = useNavigate();
   const { employeeId } = useParams();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (employeeId) {
@@ -26,31 +27,37 @@ const AddEmployees = () => {
 
   const SaveEmployee = (e) => {
     e.preventDefault();
+    if (name && location && department) {
+      setError("");
 
-    if (employeeId) {
-      //update
-      const employee = { employeeId, name, department, location };
-      employeeServices
-        .putEmployee(employee) //promise
-        .then((response) => {
-          console.log("Updated an employee!", response.data);
-          navigate("/employee");
-        })
-        .catch((error) => {
-          console.error("something went wrong!");
-        });
+      if (employeeId) {
+        //update
+        const employee = { employeeId, name, department, location };
+        employeeServices
+          .putEmployee(employee) //promise
+          .then((response) => {
+            console.log("Updated an employee!", response.data);
+            navigate("/myfirstreact/employee");
+          })
+          .catch((error) => {
+            console.error("something went wrong!");
+          });
+      } else {
+        //add employee
+        const employee = { name, department, location };
+        employeeServices
+          .postEmployee(employee) //promise
+          .then((response) => {
+            console.log("added new employee!", response.data);
+            navigate("/myfirstreact/employee");
+          })
+          .catch((error) => {
+            console.error("something went wrong!");
+          });
+      }
     } else {
-      //add employee
-      const employee = { name, department, location };
-      employeeServices
-        .postEmployee(employee) //promise
-        .then((response) => {
-          console.log("added new employee!", response.data);
-          navigate("/employee");
-        })
-        .catch((error) => {
-          console.error("something went wrong!");
-        });
+      console.error("Please fill up all details");
+      setError("Please fill up all details");
     }
   };
 
@@ -113,6 +120,9 @@ const AddEmployees = () => {
         >
           Save
         </button>
+        <p id="error">
+          {error && <p className="error text-danger">{error}</p>}
+        </p>
       </form>
     </div>
   );

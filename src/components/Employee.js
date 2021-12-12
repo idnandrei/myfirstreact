@@ -21,14 +21,19 @@ const Employee = () => {
   };
 
   const deleteEmployee = (employeeId) => {
-    EmployeeServices.deleteEmployee(employeeId)
-      .then((response) => {
-        console.log("successfully deleted the employee");
-        refreshEmployeeTable();
-      })
-      .catch((error) => {
-        console.log("something went wrong", error);
-      });
+    const confirmBox = window.confirm(
+      "Do you really want to delete this employee?"
+    );
+    if (confirmBox === true) {
+      EmployeeServices.deleteEmployee(employeeId)
+        .then((response) => {
+          console.log("successfully deleted the employee");
+          refreshEmployeeTable();
+        })
+        .catch((error) => {
+          console.log("something went wrong", error);
+        });
+    }
   };
 
   return (
@@ -58,7 +63,7 @@ const Employee = () => {
                 <div>
                   <Link
                     className="btn btn-primary"
-                    to={`/edit/${employee.employeeId}`}
+                    to={`/myfirstreact/edit/${employee.employeeId}`}
                   >
                     Update
                   </Link>
