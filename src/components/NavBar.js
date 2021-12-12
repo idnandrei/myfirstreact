@@ -7,13 +7,13 @@ const NavBar = () => {
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="/myfirstreact">
               Home
             </a>
-            <a class="nav-link" href="/employee">
+            <a class="nav-link" href="/myfirstreact/employee">
               Employee
             </a>
-            <a class="nav-link" href="/add">
+            <a class="nav-link" href="/myfirstreact/add">
               Add Employees
             </a>
           </div>
